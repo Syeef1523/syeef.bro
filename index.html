@@ -1,288 +1,713 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rikka Bot</title>
-<link rel="icon" type="image/png" href="icon.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Syeef Al Hasan - Professional Full Stack Developer Portfolio. Crafting robust web applications with modern technologies.">
+  <meta name="author" content="Syeef Al Hasan">
+  <title>Syeef Al Hasan | Full Stack Developer</title>
+  <!-- Google Fonts + Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0a0c10;
+      color: #eef2ff;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
 
-<style>
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #1e1f2a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #4f46e5;
+      border-radius: 6px;
+    }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-}
+    /* Container */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
 
-body{
-background:#050505;
-color:white;
-overflow-x:hidden;
-}
+    /* Navigation */
+    nav {
+      background: rgba(10, 12, 16, 0.9);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(79, 70, 229, 0.2);
+      padding: 1rem 0;
+    }
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .logo {
+      font-size: 1.7rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #c084fc, #4f46e5);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.5px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      color: #cdd6f4;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.25s ease;
+      font-size: 1rem;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: #a78bfa;
+      border-bottom: 2px solid #a78bfa;
+      padding-bottom: 4px;
+    }
 
-/* Matrix Background */
+    /* Buttons & common */
+    .btn-telegram {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: #2c3e66;
+      background: linear-gradient(105deg, #1e2a4a, #0f172a);
+      border: 1px solid #3b82f6;
+      color: white;
+      font-weight: 600;
+      padding: 12px 28px;
+      border-radius: 40px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+      box-shadow: 0 8px 20px rgba(59,130,246,0.2);
+    }
+    .btn-telegram i {
+      font-size: 1.3rem;
+    }
+    .btn-telegram:hover {
+      background: #2563eb;
+      border-color: #60a5fa;
+      transform: translateY(-3px);
+      box-shadow: 0 15px 25px -8px #1e3a8a;
+    }
 
-canvas{
-position:fixed;
-top:0;
-left:0;
-z-index:-1;
-}
+    /* Hero */
+    .hero {
+      padding: 4rem 0 3rem 0;
+    }
+    .hero-grid {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .hero-content {
+      flex: 1.2;
+    }
+    .hero-badge {
+      background: rgba(79, 70, 229, 0.2);
+      display: inline-block;
+      padding: 0.3rem 1rem;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #c4b5fd;
+      margin-bottom: 1rem;
+      backdrop-filter: blur(4px);
+    }
+    .hero-content h1 {
+      font-size: 3.3rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      background: linear-gradient(to right, #f0f9ff, #c4b5fd);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    .hero-content .highlight {
+      color: #a78bfa;
+    }
+    .hero-desc {
+      font-size: 1.2rem;
+      color: #b9c7e6;
+      max-width: 550px;
+      margin: 1.2rem 0 2rem;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+    .profile-img {
+      flex: 0.8;
+      display: flex;
+      justify-content: center;
+    }
+    .profile-img img {
+      width: 280px;
+      height: 280px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid rgba(167, 139, 250, 0.5);
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.5), 0 0 0 8px rgba(79, 70, 229, 0.1);
+      transition: transform 0.3s;
+    }
+    .profile-img img:hover {
+      transform: scale(1.02);
+    }
 
-/* Container */
+    /* Section styling */
+    section {
+      padding: 5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 2.5rem;
+      position: relative;
+      display: inline-block;
+    }
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 0;
+      width: 65%;
+      height: 3px;
+      background: linear-gradient(90deg, #a78bfa, #4f46e5);
+      border-radius: 4px;
+    }
 
-.container{
-max-width:1100px;
-margin:auto;
-padding:20px;
-}
+    /* About */
+    .about-text {
+      font-size: 1.1rem;
+      max-width: 850px;
+      color: #cfdef5;
+      background: rgba(30, 31, 42, 0.5);
+      padding: 1.8rem;
+      border-radius: 28px;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(79, 70, 229, 0.2);
+    }
 
-/* Banner 16:9 */
+    /* Skills grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 1.7rem;
+      margin-top: 1rem;
+    }
+    .skill-card {
+      background: #13161f;
+      padding: 1.2rem 0.8rem;
+      text-align: center;
+      border-radius: 24px;
+      transition: all 0.25s;
+      border: 1px solid #2d2f3a;
+      box-shadow: 0 5px 12px rgba(0,0,0,0.2);
+    }
+    .skill-card i {
+      font-size: 2.6rem;
+      color: #a78bfa;
+      margin-bottom: 0.6rem;
+      display: inline-block;
+    }
+    .skill-card span {
+      display: block;
+      font-weight: 500;
+      font-size: 1rem;
+    }
+    .skill-card:hover {
+      transform: translateY(-5px);
+      border-color: #a78bfa;
+      background: #1a1e2c;
+    }
 
-.banner{
-width:100%;
-aspect-ratio:16/9;
-background:url('rikka_banner.jpg') center/cover no-repeat;
-border-radius:18px;
-position:relative;
-box-shadow:0 10px 40px rgba(0,0,0,.8);
-animation:fadeIn 1.2s ease;
-}
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .project-card {
+      background: #0f1119;
+      border-radius: 28px;
+      padding: 1.8rem;
+      transition: 0.25s ease;
+      border: 1px solid #262a38;
+      box-shadow: 0 20px 30px -15px rgba(0,0,0,0.3);
+    }
+    .project-card:hover {
+      transform: translateY(-8px);
+      border-color: #6c63ff;
+      background: #121624;
+    }
+    .project-icon {
+      font-size: 2.2rem;
+      color: #a78bfa;
+      margin-bottom: 1.2rem;
+    }
+    .project-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.7rem;
+      font-weight: 700;
+    }
+    .project-card p {
+      color: #b5c2e6;
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin: 1rem 0 1.3rem;
+    }
+    .tech-stack span {
+      background: #1e1f2e;
+      padding: 0.25rem 0.9rem;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #c4b5fd;
+    }
+    .project-link {
+      color: #a78bfa;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: 0.2s;
+    }
+    .project-link i {
+      font-size: 0.85rem;
+    }
+    .project-link:hover {
+      gap: 10px;
+      color: #c084fc;
+    }
 
-/* Profile Area */
+    /* Contact + Telegram */
+    .contact-area {
+      background: linear-gradient(145deg, #0b0e17, #0a0c10);
+      border-radius: 40px;
+      padding: 2.5rem;
+      text-align: center;
+      border: 1px solid #292e42;
+    }
+    .telegram-btn-large {
+      background: #1f2a48;
+      border: none;
+      font-size: 1.25rem;
+      padding: 1rem 2.2rem;
+      margin: 1.2rem 0;
+    }
+    .contact-social {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .contact-social a {
+      color: #b9c7e6;
+      font-size: 1.6rem;
+      transition: 0.2s;
+      background: #171b26;
+      width: 50px;
+      height: 50px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      text-decoration: none;
+    }
+    .contact-social a:hover {
+      color: white;
+      background: #4f46e5;
+      transform: translateY(-4px);
+    }
+    .username-tg {
+      background: #1f2a48;
+      display: inline-block;
+      padding: 0.4rem 1.3rem;
+      border-radius: 100px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      margin-top: 0.8rem;
+    }
 
-.profile{
-position:absolute;
-bottom:-60px;
-left:40px;
-display:flex;
-align-items:center;
-gap:18px;
-}
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      color: #7f8ea3;
+      border-top: 1px solid #1e1f2c;
+    }
 
-.profile img{
-width:120px;
-height:120px;
-border-radius:50%;
-border:5px solid #0a0a0a;
-box-shadow:0 0 25px rgba(0,255,150,.5);
-transition:.4s;
-}
+    @media (max-width: 850px) {
+      .hero-grid {
+        flex-direction: column-reverse;
+        text-align: center;
+      }
+      .hero-content h1 {
+        font-size: 2.4rem;
+      }
+      .hero-buttons {
+        justify-content: center;
+      }
+      .profile-img img {
+        width: 220px;
+        height: 220px;
+      }
+      .section-title:after {
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+      }
+      .section-title {
+        display: block;
+        text-align: center;
+      }
+      .container {
+        padding: 0 1.5rem;
+      }
+      .nav-container {
+        flex-direction: column;
+      }
+      .nav-links {
+        justify-content: center;
+        gap: 1.2rem;
+      }
+    }
 
-.profile img:hover{
-transform:scale(1.08);
-}
-
-/* Name Badge */
-
-.name-badge{
-padding:10px 22px;
-border-radius:30px;
-font-weight:600;
-font-size:22px;
-
-background:linear-gradient(45deg,#00ff9c,#00c3ff);
-color:#000;
-
-box-shadow:0 0 15px rgba(0,255,180,.6);
-
-backdrop-filter:blur(10px);
-
-animation:glow 3s infinite alternate;
-}
-
-@keyframes glow{
-
-from{
-box-shadow:0 0 10px #00ffcc;
-}
-
-to{
-box-shadow:0 0 30px #00c3ff;
-}
-
-}
-
-/* Card */
-
-.card{
-margin-top:110px;
-background:rgba(255,255,255,.05);
-backdrop-filter:blur(15px);
-padding:40px;
-border-radius:20px;
-box-shadow:0 0 40px rgba(0,0,0,.7);
-animation:slideUp 1s ease;
-}
-
-/* About */
-
-.about{
-font-size:16px;
-line-height:1.8;
-color:#ddd;
-margin-bottom:35px;
-}
-
-/* Use Button */
-
-.use-btn{
-display:inline-block;
-padding:14px 38px;
-border-radius:40px;
-text-decoration:none;
-font-size:18px;
-font-weight:600;
-color:white;
-background:linear-gradient(45deg,#00ff9c,#00c3ff);
-position:relative;
-overflow:hidden;
-transition:.35s;
-}
-
-.use-btn::before{
-content:"";
-position:absolute;
-top:0;
-left:-100%;
-width:100%;
-height:100%;
-background:rgba(255,255,255,.4);
-transform:skewX(-25deg);
-transition:.5s;
-}
-
-.use-btn:hover::before{
-left:120%;
-}
-
-.use-btn:hover{
-transform:scale(1.08);
-box-shadow:0 0 25px #00ffd5;
-}
-
-/* Footer */
-
-.footer{
-margin-top:30px;
-text-align:center;
-color:#888;
-font-size:14px;
-}
-
-/* Animations */
-
-@keyframes fadeIn{
-from{opacity:0}
-to{opacity:1}
-}
-
-@keyframes slideUp{
-from{
-transform:translateY(40px);
-opacity:0
-}
-to{
-transform:translateY(0);
-opacity:1
-}
-}
-
-</style>
+    @media (max-width: 550px) {
+      .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+      .contact-area {
+        padding: 1.8rem;
+      }
+    }
+    .fade-up {
+      animation: fadeUp 0.7s ease-out;
+    }
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <nav>
+    <div class="container nav-container">
+      <div class="logo">Syeef.dev</div>
+      <ul class="nav-links">
+        <li><a href="#home" class="nav-link active">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
 
-<canvas id="matrix"></canvas>
+  <main>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <i class="fas fa-code"></i> Full Stack Architect
+          </div>
+          <h1>Hi, I'm <span class="highlight">Syeef Al Hasan</span><br>Full Stack Developer</h1>
+          <p class="hero-desc">Crafting high-performance web apps with modern frontend & scalable backend systems. 5+ years of turning ideas into digital reality.</p>
+          <div class="hero-buttons">
+            <a href="#contact" class="btn-telegram" id="heroTeleBtn">
+              <i class="fab fa-telegram-plane"></i> Contact on Telegram
+            </a>
+            <a href="#projects" style="background: transparent; border: 1px solid #a78bfa; box-shadow: none;" class="btn-telegram">
+              <i class="fas fa-arrow-down"></i> See Work
+            </a>
+          </div>
+        </div>
+        <div class="profile-img">
+          <img src="https://syeef.bro.bd/img/pfp.jpg" alt="Syeef Al Hasan profile picture">
+        </div>
+      </div>
+    </section>
 
-<div class="container">
+    <!-- About Section -->
+    <section id="about">
+      <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-text">
+          <p>👋 I'm Syeef Al Hasan — a passionate Full Stack Developer who loves building seamless digital experiences from database to UI. I specialize in MERN stack, Python ecosystems, and cloud deployments. I believe in writing clean, maintainable code and solving complex problems with elegant solutions.</p>
+          <p style="margin-top: 1rem;">💡 Currently exploring microservices and AI integrations. When I'm not coding, I contribute to open-source and mentor junior developers. I'm available for freelance or full-time collaborations — let’s build something amazing.</p>
+        </div>
+      </div>
+    </section>
 
-<div class="banner">
+    <!-- Skills Section -->
+    <section id="skills">
+      <div class="container">
+        <h2 class="section-title">Tech Arsenal</h2>
+        <div class="skills-grid">
+          <div class="skill-card"><i class="fab fa-react"></i><span>React.js</span></div>
+          <div class="skill-card"><i class="fab fa-node-js"></i><span>Node.js</span></div>
+          <div class="skill-card"><i class="fab fa-python"></i><span>Python</span></div>
+          <div class="skill-card"><i class="fas fa-database"></i><span>MongoDB</span></div>
+          <div class="skill-card"><i class="fas fa-database"></i><span>PostgreSQL</span></div>
+          <div class="skill-card"><i class="fab fa-js"></i><span>TypeScript</span></div>
+          <div class="skill-card"><i class="fab fa-vuejs"></i><span>Vue.js</span></div>
+          <div class="skill-card"><i class="fab fa-docker"></i><span>Docker</span></div>
+          <div class="skill-card"><i class="fab fa-git-alt"></i><span>Git/GitHub</span></div>
+          <div class="skill-card"><i class="fas fa-cloud"></i><span>AWS/Azure</span></div>
+          <div class="skill-card"><i class="fas fa-code-branch"></i><span>REST/GraphQL</span></div>
+          <div class="skill-card"><i class="fas fa-mobile-alt"></i><span>Tailwind/CSS3</span></div>
+        </div>
+      </div>
+    </section>
 
-<div class="profile">
+    <!-- Projects Section -->
+    <section id="projects">
+      <div class="container">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+          <div class="project-card">
+            <div class="project-icon"><i class="fas fa-store"></i></div>
+            <h3>NexaCommerce</h3>
+            <p>Full-featured e-commerce platform with real-time inventory, payment gateway (Stripe), and admin dashboard. Built with MERN & Redux Toolkit.</p>
+            <div class="tech-stack"><span>React</span><span>Node.js</span><span>MongoDB</span><span>JWT</span></div>
+            <a href="#" class="project-link">Case study <i class="fas fa-arrow-right"></i></a>
+          </div>
+          <div class="project-card">
+            <div class="project-icon"><i class="fas fa-tasks"></i></div>
+            <h3>FlowSpace</h3>
+            <p>Collaborative task management & team workspace with real-time updates, file attachments, and role-based access control. (Next.js + PostgreSQL + Prisma)</p>
+            <div class="tech-stack"><span>Next.js</span><span>Prisma</span><span>Tailwind</span><span>WebSockets</span></div>
+            <a href="#" class="project-link">Live demo <i class="fas fa-arrow-right"></i></a>
+          </div>
+          <div class="project-card">
+            <div class="project-icon"><i class="fas fa-chart-line"></i></div>
+            <h3>Analytics Dashboard</h3>
+            <p>Interactive dashboard visualizing business metrics with real-time data aggregation, custom widgets, and PDF report generation. FastAPI + React + D3.</p>
+            <div class="tech-stack"><span>FastAPI</span><span>React</span><span>D3.js</span><span>Redis</span></div>
+            <a href="#" class="project-link">Explore <i class="fas fa-arrow-right"></i></a>
+          </div>
+          <div class="project-card">
+            <div class="project-icon"><i class="fas fa-robot"></i></div>
+            <h3>AI Content Studio</h3>
+            <p>Generative AI SaaS that creates blog posts, social copy, and SEO metadata using OpenAI API. Includes user auth, credits system, and export features.</p>
+            <div class="tech-stack"><span>Python</span><span>Django</span><span>React</span><span>PostgreSQL</span></div>
+            <a href="#" class="project-link">Learn more <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<img src="rikka_pfp.jpg">
+    <!-- Contact & Telegram -->
+    <section id="contact">
+      <div class="container">
+        <h2 class="section-title">Let's Connect</h2>
+        <div class="contact-area">
+          <i class="fab fa-telegram" style="font-size: 2.8rem; color: #a78bfa; margin-bottom: 0.5rem; display: inline-block;"></i>
+          <h3 style="font-size: 1.8rem; margin-bottom: 0.5rem;">Quickest way? Telegram</h3>
+          <p style="margin-bottom: 0.8rem;">I'm available for collaborations, freelance projects, or just tech chats.</p>
+          <div class="username-tg">
+            <i class="fab fa-telegram"></i> @Bennox
+          </div>
+          <div style="margin: 1.5rem 0 0.5rem;">
+            <a href="https://t.me/Bennox" target="_blank" rel="noopener noreferrer" class="btn-telegram telegram-btn-large">
+              <i class="fab fa-telegram-plane"></i> Message me on Telegram
+            </a>
+          </div>
+          <div class="contact-social">
+            <a href="#" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" target="_blank" aria-label="Email"><i class="fas fa-envelope"></i></a>
+          </div>
+          <p style="margin-top: 1.2rem; font-size: 0.85rem;">📬 Or drop an email: syeef@hasan.dev (prefer Telegram for fast reply)</p>
+        </div>
+      </div>
+    </section>
+  </main>
 
-<div class="name-badge">
-Rikka Bot
-</div>
+  <footer>
+    <div class="container">
+      <p>© 2026 Syeef Al Hasan — Full Stack Developer. Built with <i class="fas fa-heart" style="color:#a78bfa"></i> & modern web tech.</p>
+    </div>
+  </footer>
 
-</div>
+  <script>
+    (function() {
+      // Smooth scrolling for all anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const targetId = this.getAttribute('href');
+          if (targetId === "#" || targetId === "") return;
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            e.preventDefault();
+            targetElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+            // update active link manually after scroll
+            updateActiveLink(targetId);
+          }
+        });
+      });
 
-</div>
+      // active nav link on scroll
+      const sections = document.querySelectorAll('section');
+      const navLinks = document.querySelectorAll('.nav-link');
 
-<div class="card">
+      function updateActiveLink(currentHash) {
+        let activeId = currentHash ? currentHash.substring(1) : null;
+        if (!activeId) {
+          // fallback: determine from scroll
+          let scrollPos = window.scrollY + 120;
+          sections.forEach(sec => {
+            const offsetTop = sec.offsetTop;
+            const offsetBottom = offsetTop + sec.offsetHeight;
+            if (scrollPos >= offsetTop && scrollPos < offsetBottom) {
+              activeId = sec.getAttribute('id');
+            }
+          });
+        }
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          const href = link.getAttribute('href');
+          if (href === `#${activeId}`) {
+            link.classList.add('active');
+          }
+        });
+      }
 
-<div class="about">
+      function handleScrollSpy() {
+        let scrollPosition = window.scrollY + 150;
+        let currentSection = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionBottom = sectionTop + section.offsetHeight;
+          if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+            currentSection = section.getAttribute('id');
+          }
+        });
+        if (currentSection) {
+          navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${currentSection}`) {
+              link.classList.add('active');
+            }
+          });
+        } else if (window.scrollY < 100) {
+          navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#home') link.classList.add('active');
+          });
+        }
+      }
 
-Hi! I am <b>Rikka</b>, a multifunctional bot equipped with a wide range of features to make your life easier, developed by <a href="https://t.me/Bennox"><b>@Bennox</b></a>.
+      window.addEventListener('scroll', handleScrollSpy);
+      window.addEventListener('load', () => {
+        handleScrollSpy();
+        // initial active link for home
+        if (window.location.hash) {
+          updateActiveLink(window.location.hash);
+        } else {
+          document.querySelector('.nav-link[href="#home"]').classList.add('active');
+        }
+        // Fade-in effect on elements (optional)
+        const fadeElements = document.querySelectorAll('.hero, .about-text, .skills-grid, .projects-grid, .contact-area');
+        fadeElements.forEach(el => el.classList.add('fade-up'));
+      });
 
-<br><br>
-
-Whether you need to shorten links, generate secure passwords, convert text to image, get information about numbers, check IP and national info, I've got you covered! I can also turn image to url, send sms, and much more. Explore my full potential and let me assist you in everyday tasks effortlessly!
-
-</div>
-
-<a class="use-btn" href="https://t.me/RikkaxBot" target="_blank">
-Use Me
-</a>
-
-</div>
-
-<div class="footer">
-© 2026 • Rikka Bot
-</div>
-
-</div>
-
-<script>
-
-/* Binary Matrix Background */
-
-const canvas=document.getElementById("matrix");
-const ctx=canvas.getContext("2d");
-
-canvas.height=window.innerHeight;
-canvas.width=window.innerWidth;
-
-const binary="01";
-const fontSize=16;
-const columns=canvas.width/fontSize;
-
-const drops=[];
-
-for(let x=0;x<columns;x++)
-drops[x]=1;
-
-function draw(){
-
-ctx.fillStyle="rgba(0,0,0,0.05)";
-ctx.fillRect(0,0,canvas.width,canvas.height);
-
-ctx.fillStyle="#00ff9c";
-ctx.font=fontSize+"px monospace";
-
-for(let i=0;i<drops.length;i++){
-
-const text=binary[Math.floor(Math.random()*binary.length)];
-
-ctx.fillText(text,i*fontSize,drops[i]*fontSize);
-
-if(drops[i]*fontSize>canvas.height && Math.random()>0.975)
-drops[i]=0;
-
-drops[i]++;
-
-}
-
-}
-
-setInterval(draw,33);
-
-</script>
-
+      // Ensure Telegram buttons direct to t.me/Bennox
+      const allTelegramBtns = document.querySelectorAll('.btn-telegram');
+      const mainTelegramLink = "https://t.me/Bennox";
+      allTelegramBtns.forEach(btn => {
+        // avoid overriding the "See Work" button, but it doesn't have telegram direct? we handle only those with href or add?
+        if (btn.getAttribute('href') === '#contact' || btn.getAttribute('href') === '#') {
+          // hero button redirect to contact section? but we also want direct telegram, but user expects contact button leads to telegram? actually "Contact on Telegram" should directly open Telegram.
+          // The hero button has class btn-telegram and text "Contact on Telegram", we override to open telegram directly.
+          if (btn.innerText.includes('Telegram') || btn.querySelector('.fa-telegram-plane')) {
+            btn.addEventListener('click', function(e) {
+              const isDirectTele = btn.innerText.includes('Telegram') || btn.querySelector('.fa-telegram-plane');
+              if (isDirectTele && btn.getAttribute('href') !== mainTelegramLink) {
+                e.preventDefault();
+                window.open(mainTelegramLink, '_blank');
+              }
+            });
+          }
+        } else if (btn.getAttribute('href') && btn.getAttribute('href').includes('t.me')) {
+          // already ok
+        } else if (btn.classList.contains('telegram-btn-large') || btn.innerText.includes('Message me')) {
+          btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.open(mainTelegramLink, '_blank');
+          });
+        } else if (btn.id === 'heroTeleBtn') {
+          btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.open(mainTelegramLink, '_blank');
+          });
+        }
+      });
+      // additionally ensure contact section large telegram button works
+      const largeTeleBtn = document.querySelector('.telegram-btn-large');
+      if (largeTeleBtn) {
+        largeTeleBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          window.open(mainTelegramLink, '_blank');
+        });
+      }
+      // handle any other telegram link
+      const anyMsgBtn = document.querySelector('a[href="https://t.me/Bennox"]');
+      if (!anyMsgBtn) {
+        // we already have one, but create safe fallback
+      }
+      // for the contact social icons, dummy links (#) - no action needed
+    })();
+  </script>
 </body>
 </html>
